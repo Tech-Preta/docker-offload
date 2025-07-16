@@ -116,7 +116,7 @@ run_test() {
     # Limpeza pós-teste
     echo -e "${YELLOW}🧹 Limpando após teste...${NC}"
     docker-compose down --remove-orphans
-    docker rmi $(docker images --filter "reference=docker-offload-tests*" -q) 2>/dev/null || true
+    remove_test_images
     docker builder prune -f
     echo ""
 }
