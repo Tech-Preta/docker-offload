@@ -194,11 +194,12 @@ generate_report() {
         # Calcula diferença percentual
         if [ -n "$local_time" ] && [ -n "$offload_time" ]; then
             diff=$(echo "scale=2; (($local_time - $offload_time) / $local_time) * 100" | bc -l)
-            
+            abs_diff=$(echo "scale=2; sqrt($diff * $diff)" | bc -l)
+    
             if (( $(echo "$offload_time < $local_time" | bc -l) )); then
-                echo -e "${GREEN}🎉 Docker Offload foi ${diff}% mais rápido!${NC}"
+                echo -e "${GREEN}🎉 Docker Offload foi ${abs_diff}% mais rápido!${NC}"
             else
-                echo -e "${RED}Docker Local foi mais rápido por ${diff}%${NC}"
+                echo -e "${RED}Docker Local foi ${abs_diff}% mais rápido!${NC}"
             fi
         fi
         
