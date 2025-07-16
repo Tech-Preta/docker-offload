@@ -25,7 +25,7 @@ cleanup_all() {
     docker-compose down --remove-orphans 2>/dev/null || true
     
     # Remove todas as imagens relacionadas ao projeto
-    docker rmi $(docker images --filter "reference=docker-offload-tests*" -q) 2>/dev/null || true
+    docker rmi "$(docker images --filter "reference=docker-offload-tests*" -q)" 2>/dev/null || true
     
     # Limpa cache do build
     docker builder prune -f
