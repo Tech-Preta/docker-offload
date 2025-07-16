@@ -33,8 +33,7 @@ O script irá:
 
 ### **Documentação**
 - **`README.md`**: Este arquivo (instruções principais)
-- **`METODOLOGIA_CORRIGIDA.md`**: Explicação da metodologia justa
-
+- **`METODOLOGIA.md`**: Explicação da metodologia justa
 ## 🔧 Garantias de Teste Justo
 
 ### ✅ **Cache Eliminado**
