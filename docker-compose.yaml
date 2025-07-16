@@ -1,0 +1,10 @@
+# docker-compose.yaml
+version: '3.8'
+
+services:
+  heavy_runner:
+    build: 
+      context: .
+      no_cache: true  # Força rebuild completo para testes justos
+    environment:
+      ITERATIONS: "100000000"
