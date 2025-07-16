@@ -128,8 +128,15 @@ main() {
     
     # Verifica se bc está disponível para cálculos
     if ! command -v bc &> /dev/null; then
-        echo -e "${RED}❌ bc não encontrado. Instalando...${NC}"
-        sudo apt-get update && sudo apt-get install -y bc
+        echo -e "${RED}❌ bc não encontrado.${NC}"
+        read -p "Deseja instalar o pacote 'bc'? [s/N]: " user_input
+        if [[ "$user_input" =~ ^[sS](im)?$ ]]; then
+            echo -e "${YELLOW}Instalando 'bc'...${NC}"
+            sudo apt-get update && sudo apt-get install -y bc
+        else
+            echo -e "${RED}Instalação de 'bc' cancelada. O script não pode continuar.${NC}"
+            exit 1
+        fi
     fi
     
     # Verifica dependências
