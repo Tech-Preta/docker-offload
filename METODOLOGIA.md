@@ -27,8 +27,7 @@ docker_images=$(docker images --filter "reference=docker-offload-tests*" -q)
 [ -n "$docker_images" ] && docker rmi $docker_images || true
 
 # Limpa cache de build
-docker builder prune -f
-
+docker builder prune --all -f   # remove todo o cache de build
 # Limpa sistema Docker
 docker system prune -f
 
