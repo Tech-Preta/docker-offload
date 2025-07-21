@@ -25,7 +25,7 @@ cleanup_all() {
     docker-compose down --remove-orphans 2>/dev/null || true
     
     # Remove todas as imagens relacionadas ao projeto
-    docker rmi "$(docker images --filter "reference=docker-offload-tests*" -q)" 2>/dev/null || true
+    docker images --filter "reference=docker-offload-tests*" -q | xargs -r docker rmi 2>/dev/null || true
     
     # Limpa cache do build
     docker builder prune -f
@@ -121,6 +121,12 @@ run_test() {
     echo ""
 }
 
+# Função para remover imagens de teste do projeto
+remove_test_images() {
+    docker images --filter "reference=docker-offload-tests*" -q \
+        | xargs -r docker rmi 2>/dev/null || true
+}
+
 # Função principal
 main() {
     echo -e "${BLUE}=== INICIANDO TESTES JUSTOS ===${NC}"
@@ -200,13 +206,15 @@ generate_report() {
         
         # Calcula diferença percentual
         if [ -n "$local_time" ] && [ -n "$offload_time" ]; then
-            diff=$(echo "scale=2; (($local_time - $offload_time) / $local_time) * 100" | bc -l)
-            abs_diff=$(echo "scale=2; sqrt($diff * $diff)" | bc -l)
-    
-            if (( $(echo "$offload_time < $local_time" | bc -l) )); then
-                echo -e "${GREEN}🎉 Docker Offload foi ${abs_diff}% mais rápido!${NC}"
+            if [ "$local_time" != "0" ]; then
+                diff=$(echo "scale=2; (($local_time - $offload_time) / $local_time) * 100" | bc -l)
+                if (( $(echo "$offload_time < $local_time" | bc -l) )); then
+                    echo -e "${GREEN}🎉 Docker Offload foi ${diff}% mais rápido!${NC}"
+                else
+                    echo -e "${RED}Docker Local foi mais rápido por ${diff}%${NC}"
+                fi
             else
-                echo -e "${RED}Docker Local foi ${abs_diff}% mais rápido!${NC}"
+                echo -e "${RED}❌ Erro: O tempo do Docker Local é 0, impossibilitando o cálculo da diferença percentual.${NC}"
             fi
         fi
         

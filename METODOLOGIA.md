@@ -23,14 +23,14 @@
 ```bash
 # Remove containers e imagens
 docker-compose down --remove-orphans
-docker rmi $(docker images --filter "reference=docker-offload-tests*" -q)
+docker_images=$(docker images --filter "reference=docker-offload-tests*" -q)
+[ -n "$docker_images" ] && docker rmi $docker_images || true
 
 # Limpa cache de build
 docker builder prune -f
 
 # Limpa sistema Docker
 docker system prune -f
-```
 
 ### **2. Controle Explícito do Contexto Docker**
 ```bash
