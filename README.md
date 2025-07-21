@@ -2,6 +2,30 @@
 
 Este projeto implementa uma metodologia justa para comparar a performance entre Docker Local e Docker Offload (Build Cloud), eliminando interferências de cache e garantindo condições equivalentes.
 
+```mermaid
+sequenceDiagram
+    participant Usuário
+    participant Script(run_fair_tests.sh)
+    participant Docker Local
+    participant Docker Offload
+    participant Serviço (heavy_runner)
+    participant Python Script (heavy_task.py)
+
+    Usuário->>Script(run_fair_tests.sh): Executa script de teste justo
+    Script(run_fair_tests.sh)->>Docker Local: Limpa cache e ambiente
+    Script(run_fair_tests.sh)->>Docker Local: Executa build e run (docker-compose)
+    Docker Local->>Serviço (heavy_runner): Inicia container
+    Serviço (heavy_runner)->>Python Script (heavy_task.py): Executa tarefa pesada
+    Python Script (heavy_task.py)->>Serviço (heavy_runner): Retorna tempo/resultados
+    Serviço (heavy_runner)->>Docker Local: Finaliza execução
+    Script(run_fair_tests.sh)->>Docker Offload: Limpa cache e ambiente
+    Script(run_fair_tests.sh)->>Docker Offload: Executa build e run (docker-compose)
+    Docker Offload->>Serviço (heavy_runner): Inicia container (na nuvem)
+    Serviço (heavy_runner)->>Python Script (heavy_task.py): Executa tarefa pesada
+    Python Script (heavy_task.py)->>Serviço (heavy_runner): Retorna tempo/resultados
+    Serviço (heavy_runner)->>Docker Offload: Finaliza execução
+    Script(run_fair_tests.sh)->>Usuário: Gera relatório comparativo
+```
 ## 🎯 Objetivo
 
 Realizar uma comparação **verdadeiramente justa** entre:
