@@ -1,4 +1,4 @@
-# Docker Offload Performance Tests - Testes Justos
+# Docker Offload Performance Tests
 
 Este projeto implementa uma metodologia justa para comparar a performance entre Docker Local e Docker Offload (Build Cloud), eliminando interferências de cache e garantindo condições equivalentes.
 
@@ -23,38 +23,6 @@ O script irá:
 4. ☁️ Executar teste cloud (contexto `docker-cloud`)
 5. 📊 Gerar relatório comparativo
 
-## 📁 Arquivos do Projeto
-
-### **Arquivos Principais**
-- **`run_fair_tests.sh`**: Script de testes justos (PRINCIPAL)
-- **`heavy_task.py`**: Tarefa computacional intensiva para teste
-- **`Dockerfile`**: Container determinístico sem cache
-- **`docker-compose.yaml`**: Configuração com builds forçados
-
-### **Documentação**
-- **`README.md`**: Este arquivo (instruções principais)
-- **`METODOLOGIA.md`**: Explicação da metodologia justa
-## 🔧 Garantias de Teste Justo
-
-### ✅ **Cache Eliminado**
-- Limpeza completa antes e entre testes
-- `no_cache: true` no docker-compose
-- `docker builder prune -f` forçado
-
-### ✅ **Builds Idênticos**
-- Mesmo Dockerfile para ambos cenários
-- Mesmo docker-compose.yaml
-- Flags `--build --force-recreate --no-deps`
-
-### ✅ **Contextos Controlados**
-- Alternância explícita: `default` ↔ `docker-cloud`
-- Verificação de contexto ativo
-- Reset entre testes
-
-### ✅ **Medição Precisa**
-- Tempo total: build + execução
-- Resultados salvos em CSV
-## 🧪 Tarefa de Teste
 
 O projeto usa uma tarefa computacional intensiva em Python que executa:
 - Operações matemáticas (sin, cos, sqrt)
@@ -123,13 +91,6 @@ Docker Offload é especialmente vantajoso para:
 # - test_results.csv (dados)
 # - Output detalhado no terminal
 ```
-
----
-
-**✅ Projeto padronizado para testes justos e reproduzíveis!**
-3. Experimente com workloads reais do seu projeto
-4. Compare os resultados com diferentes tipos de hardware local
-5. Teste cenários específicos da sua aplicação (builds, ML training, etc.)
 
 ---
 
