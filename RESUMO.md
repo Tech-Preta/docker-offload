@@ -17,7 +17,7 @@ Realizamos uma comparação **verdadeiramente justa** entre Docker Local e Docke
 - `docker system prune -f` antes de cada teste
 - `docker-compose up --build --force-recreate --no-deps`
 - `no_cache: true` forçado no docker-compose
-- Alternância controlada de contextos: `default` ↔ `desktop-linux`
+- Alternância controlada de contextos: `default` ↔ `actual-context-name`
 
 ## 🏆 **Resultados Conclusivos**
 
