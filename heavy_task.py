@@ -6,8 +6,12 @@ import os
 def run_heavy_computation(iterations):
     start_time = time.time()
     result = 0.0
+    sin_i, cos_i = 0.0, 1.0  # sin(0) = 0, cos(0) = 1
+    sin_1, cos_1 = math.sin(1), math.cos(1)  # Precompute sin(1) and cos(1)
     for i in range(iterations):
-        result += math.sin(i) * math.cos(i) / (math.sqrt(i + 1))
+        result += sin_i * cos_i / (math.sqrt(i + 1))
+        # Update sin(i+1) and cos(i+1) using recurrence relations
+        sin_i, cos_i = sin_i * cos_1 + cos_i * sin_1, cos_i * cos_1 - sin_i * sin_1
     end_time = time.time()
     return end_time - start_time, result
 
