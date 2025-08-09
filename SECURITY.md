@@ -4,7 +4,7 @@
 
 | Versão  | Suporte          |
 | ------- | ---------------- |
-| 0.0.0  | :white_check_mark: |
+| 1.0.0  | :white_check_mark: |
 
 ## Reportando Vulnerabilidades
 
@@ -43,4 +43,3 @@ Este projeto segue as seguintes práticas:
 - CodeQL Analysis
 - Scorecard Supply-Chain Security
 - Trivy
-- Checkov

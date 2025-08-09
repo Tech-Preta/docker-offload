@@ -1,6 +1,14 @@
-# 🎯 Resultados dos Testes Justos - Docker Offload vs Local
+# 🎯 Resultados dos Testes - Docker Offload vs Local
 
-## 📊 **Metodologia Justa Implementada**
+## 🖥️ **Configuração do Hardware Utilizado**
+
+- **Sistema Operacional:** Debian 12
+- **Memória RAM:** 16 GB DDR4
+- **Processador:** 8 núcleos Intel Core i5
+
+
+
+## 📊 **Metodologia Implementada**
 
 ✅ **Cache totalmente eliminado** antes e entre testes  
 ✅ **Builds idênticos** sem vantagens artificiais  
@@ -113,4 +121,4 @@
 
 ---
 
-**✅ Metodologia justa comprova: Docker Offload oferece benefícios reais de 17% em performance total!**
+**✅ Metodologia: Docker Offload oferece benefícios reais de 17% em performance total!**

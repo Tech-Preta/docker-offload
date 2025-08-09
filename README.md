@@ -32,9 +32,10 @@ Realizar uma comparação **verdadeiramente justa** entre:
 - **Docker Local**: Execução em hardware local sem offload
 - **Docker Offload**: Execução na nuvem usando Docker Build Cloud
 
-## 🚀 Execução dos Testes Justos
+## 🚀 Execução dos Testes
 
-Para executar os testes com metodologia corrigida:
+Para executar os testes, utilize o script `run_fair_tests.sh` que automatiza todo o processo de limpeza, execução e geração de relatórios.
+
 
 ```bash
 ./run_fair_tests.sh
@@ -90,7 +91,7 @@ Com a metodologia justa, esperamos medir:
 - 🏗️ Build: Performance sem cache para ambos
 
 ### **Formato dos Resultados**
-- **CSV**: `test_results.csv` com dados brutos
+- **CSV**: `docs/test_results.csv` com dados brutos
 - **Terminal**: Relatório em tempo real com percentuais
 - **Comparação**: Diferença percentual automática
 
@@ -107,7 +108,7 @@ Docker Offload é especialmente vantajoso para:
 ## 🚀 Executar Testes Agora
 
 ```bash
-# Executa testes justos imediatamente
+# Executa testes imediatamente
 ./run_fair_tests.sh
 
 # Monitora resultados em tempo real
@@ -118,4 +119,4 @@ Docker Offload é especialmente vantajoso para:
 
 ---
 
-Para mais informações sobre Docker Offload, consulte o documento principal `docker-offload.md`.
+Para mais informações sobre Docker Offload, consulte o documento principal `docs/docker-offload.md`.
